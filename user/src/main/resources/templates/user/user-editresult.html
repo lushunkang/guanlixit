@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/xadmin.css">
+    <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-body" >
+    <form class="layui-form">
+
+        <div class="layui-form-item">
+            <label for="resultId" class="layui-form-label" >
+                反馈编号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="resultId" disabled  name="resultId" th:value="${ret.resultId}" required=""
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serUserNickName" class="layui-form-label">
+                用户登录名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serUserNickName" disabled  name="serUserNickName" required="" th:value="${ret.serUserNickName}"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div>
+                <label for="serName" class="layui-form-label">
+                    用户姓名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="serName" name="serName" required="" disabled th:value="${ret.serName}"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serId" class="layui-form-label" >
+                服务编号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serId" disabled  name="serId" th:value="${ret.serId}" required=""
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serType" class="layui-form-label" >
+                <span class="x-red">*</span>服务类型
+            </label>
+            <div class="layui-input-inline" >
+                <select name="serType" id="serType">
+                    <option  th:value="${ret.serType}" > <span th:text="${ret.serType}"></span></option>
+                    <option value="上门服务">上门服务</option>
+                    <option value="解决客户投诉">解决客户投诉</option>
+                    <option value="客户培训">客户培训</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serTime" class="layui-form-label">
+                <span class="x-red">*</span>服务日期
+            </label>
+            <div class="layui-input-inline">
+                <input type="date" id="serTime" name="serTime" required="" th:value="${ret.serTime}" lay-verify="serTime"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serUserTel" class="layui-form-label" >
+                <span class="x-red">*</span>电话号码
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serUserTel" name="serUserTel" required="" th:value="${ret.serUserTel}" lay-verify="phone"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            <label for="serSpendMoney" class="layui-form-label">
+                <span class="x-red">*</span>预估成本
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serSpendMoney" name="serSpendMoney" required=""  th:value="${ret.serSpendMoney}" lay-verify="serSpendMoney"
+                       autocomplete="off" class="layui-input">
+            </div>
+
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serSpendTime" class="layui-form-label">
+                <span class="x-red">*</span>服务时间
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serSpendTime" name="serSpendTime" required="" th:value="${ret.serSpendTime}" lay-verify="serSpendTime"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serContent" class="layui-form-label" >
+                <span class="x-red">*</span>服务内容描述
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serContent" name="serContent" required="" th:value="${ret.serContent}" lay-verify="serContent"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="serManager" class="layui-form-label">
+                <span class="x-red">*</span>用户经理
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serManager" name="serManager" disabled  required="" th:value="${ret.serManager}" lay-verify="serManager"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="resultManager" class="layui-form-label">
+                <span class="x-red">*</span>处理人
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="resultManager" name="resultManager" disabled  required="" th:value="${ret.resultManager}"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div>
+                <label for="serRead" class="layui-form-label" >
+                    <span class="x-red">*</span>经理是否已读
+                </label>
+                <div class="layui-input-inline" disabled  id="serRead" name="serRead"   >
+                    <input type="radio" name="serRead" disabled value="是" title="是" th:if="${ret.serRead} eq '是'"  checked="" >
+                    <input type="radio" name="serRead" disabled value="是" title="是" th:if="${ret.serRead} eq '否'"  >
+                    <input type="radio" name="serRead" disabled value="否" title="否" th:if="${ret.serRead} eq '否'"  checked="" >
+                    <input type="radio" name="serRead" disabled  value="否" title="否" th:if="${ret.serRead} eq '是'" >
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="resultUserBack" class="layui-form-label">
+                <span class="x-red">*</span>客户反馈意见
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="resultUserBack" name="resultUserBack" required="" th:value="${ret.resultUserBack}" lay-verify="resultUserBack"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="resultUsereVal" class="layui-form-label" >
+                <span class="x-red">*</span>服务类型
+            </label>
+            <div class="layui-input-inline" >
+                <select name="resultUsereVal" id="resultUsereVal">
+                    <option  th:value="${ret.resultUsereVal}" > <span th:text="${ret.resultUsereVal}"></span></option>
+                    <option value="非常满意">非常满意</option>
+                    <option value="满意">满意</option>
+                    <option value="一般">一般</option>
+                    <option value="不好">不好</option>
+                    <option value="非常不好">非常不好</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="resultTimei" class="layui-form-label">
+                <span class="x-red">*</span>完成时间
+            </label>
+            <div class="layui-input-inline">
+                <input type="date" id="resultTimei" name="resultTimei" disabled  required="" th:value="${ret.resultTimei}" lay-verify="resultTimei"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="margin-top: 30px">
+            <label  class="layui-form-label">
+            </label>
+            <button  class="layui-btn" lay-filter="add" lay-submit="">
+                保存信息
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+
+
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            serTime: function(value){
+                if(value.length < 1){
+                    return '请填写服务日期';
+                }
+            }
+            ,serSpendMoney: function(value){
+                if(value.length < 1){
+                    return '请填写服务预估成本';
+                }
+            }
+            ,serSpendTime: function(value){
+                if(value.length < 1){
+                    return '请填写服务时间';
+                }
+            }
+            ,serContent: function(value){
+                if(value.length < 1){
+                    return '请填写服务内容';
+                }
+            }
+            ,resultUserBack: function(value){
+                if(value.length < 1){
+                    return '客户反馈意见';
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(add)', function(data){
+            console.log(data);
+            $.ajax({
+                url:"/user/resultedit",
+                type:"get",
+                data:data.field,
+                dataType:"json",//返回的数据类型
+                success:function(data){
+                    //定义{info:"修改成功"}
+                    $("#info").text(data.info);
+
+                    if(data.info=="保存成功"){
+                        layer.alert("保存成功",function(index){
+                            // 1 关闭弹窗
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                            //刷新
+                            parent.window.location.href=parent.window.location.href;
+                        })
+
+                    }else {
+                        layer.alert("保存失败");
+                    }
+                }
+            })
+
+            return false;
+        });
+    });
+</script>
+<script>var _hmt = _hmt || []; (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();</script>
+</body>
+
+</html>

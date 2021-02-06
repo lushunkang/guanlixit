@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
+</head>
+<body>
+<form class="x-so" action="/manager/managerresultPage" id="myform" style="margin-top: 30px" >
+    <select id="condition" name="condition" style="width: 140px;height: 37px">
+        <option value="--------">----</option>
+        <option value="编号">编号</option>
+        <option value="服务类型">服务类型</option>
+        <option value="服务日期">服务日期</option>
+        <option value="处理人">处理人</option>
+        <option value="完成时间">完成时间</option>
+
+
+    </select>
+    <input class="layui-input" name="conValue" th:value="${vv}" type="text" id="conValue" placeholder="请输入查询条件">
+    <!--<input type="submit" class="layui-btn layui-btn-normal" value="查询" >-->
+    <input type="button" class="layui-btn layui-btn-normal" onclick="search()" value="查询" >
+
+</form>
+
+<table  class="layui-table" >
+    <thead>
+    <th>服务编号</th>
+    <th>用户名昵称</th>
+    <th>客户姓名</th>
+    <th>经理</th>
+    <th>服务类型</th>
+    <th>服务日期</th>
+    <th>客户联系方式</th>
+    <th>预估成本</th>
+    <th>服务时间</th>
+    <th>内容描述</th>
+    <th>经理是否已读</th>
+    <th>操作</th>
+    </thead>
+    <tbody>
+    <tr th:each="i:${info.list}">
+        <td th:text="${i.serId}"></td>
+        <td th:text="${i.serUserNickName}"></td>
+        <td th:text="${i.serName}"></td>
+        <td th:text="${i.serManager}"></td>
+        <td th:text="${i.serType}"></td>
+        <td th:text="${i.serTime}"></td>
+        <td th:text="${i.serUserTel}"></td>
+        <td th:text="${i.serSpendMoney}"></td>
+        <td th:text="${i.serSpendTime}"></td>
+        <td th:text="${i.serContent}"></td>
+        <td th:text="${i.serRead}"></td>
+        <td>
+            <button class="layui-btn layui-btn-normal" type="button" onclick="update(this)" >查看</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div style="margin-top: 20px" class="x-so">
+    <a class="layui-btn layui-btn-normal" th:href="@{/manager/managerresultPage(page=${info.pre})}" >上一页</a>
+    第<span th:text="${info.cur}"></span>页
+    <a class="layui-btn layui-btn-normal" th:href="@{/manager/managerresultPage(page=${info.next})}" >下一页</a>
+    共<span th:text="${info.totalPage}"></span>页/
+    <span th:text="${info.total}"></span>条数据
+
+
+</div>
+</body>
+</html>
+<script>
+    //打开修改页面的发法
+    function update(obj) {
+        //huoqu当前选中行的userId值
+        var id=$(obj).parent().parent().find("td").eq(3).text();
+        //打开弹窗
+        x_admin_show("修改","/user/resulteditPage?serId="+id,700,500);
+    }
+    //excle导出
+    //打开修改页面的发法
+    function exportd() {
+        //打开弹窗
+        x_admin_show("修改","/user/resulteditPage?serId="+id,700,500);
+    }
+
+    //删除
+    /*  function delUser(obj) {
+          //获取当前选中行的userId值
+          var id=$(obj).parent().parent().find("td").eq(0).text();
+          //用提示框确定是否删除
+          layer.confirm("你确定要删除吗？",{icon:3,title:"警告"},function (index) {
+              $.ajax({
+                  url:"/user/delservice",
+                  type:"get",
+                  data:{"serId":id},
+                  dataType:"json",
+                  success:function (data) {
+                      layer.alert(data.info)
+                      if (data.info=="删除成功"){
+                          //（第一种）刷新页面
+                          window.location.href=window.location.href;
+                          //第二种 刷新动态更改页面
+                          // $(obj).parent().parent().remove();
+                      }
+
+                  }
+              })
+          })
+      }*/
+
+
+    //查询验证
+    function search() {
+        //获取用户输入的查询条件
+        var v=$("#conValue").val();
+        //获取用户选择的查询
+        var con=$("#condition").val();
+        //判断用户选择的查询条件是什么
+        if(con=="编号")
+        {
+            //创建一个正则表达式对象
+            var re=/^[0-9]*$/
+            //验证用户输入的信息是否是数字
+            if(re.test(v)){
+                //用js做表单提交
+                document.getElementById("myform").submit();
+            }else {
+                layer.alert("请输入数字");
+            }
+        }
+        else
+        {
+            //用js做表单提交
+            document.getElementById("myform").submit();
+        }
+
+    }
+</script>
